@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>❤️ 专属情侣点餐</title>
+    <!-- 页面样式：粉色主题 -->
+    <style>
+        body {
+            字体: 微软雅黑; 
+            背景: #ffe6f2; /* 浅粉色背景 */
+        }
+        .菜品卡片 {
+            背景: 白色;
+            边框圆角: 10px;
+            内边距: 15px;
+            外边距: 10px;
+            盒子阴影: 0 2px 5px #ffb3d9; /* 粉红色阴影 */
+        }
+        button {
+            背景: #ff69b4; /* 粉红色按钮 */
+            颜色: 白色;
+            边框: 无;
+            内边距: 10px 20px;
+            边框圆角: 5px;
+        }
+        #已点菜品列表 {
+            颜色: #ff1493; /* 深粉色文字 */
+        }
+    </style>
+</head>
+<body>
+    <h1>❤️ 今天想吃什么？</h1>
+    
+    <!-- 菜品区域 -->
+    <div id="菜单">
+        <!-- 示例菜品1 -->
+        <div class="菜品卡片">
+            <h3>🍖 红烧肉</h3>
+            <button onclick="点餐('红烧肉')">点这道！</button>
+        </div>
+        
+        <!-- 示例菜品2 -->
+        <div class="菜品卡片">
+            <h3>🍅 番茄炒蛋</h3>
+            <button onclick="点餐('番茄炒蛋')">点这道！</button>
+        </div>
+        
+        <!-- 手动添加更多菜品 --><div class="菜品卡片">
+         <h3>🥟 三鲜水饺</h3>
+         <button onclick="点餐('三鲜水饺')">点这道！</button>
+     </div>
+    </div>
+
+    <!-- 已点菜品展示 -->
+    <h2>已点菜品：</h2>
+    <div id="已点菜品列表"></div>
+
+    <!-- JavaScript功能 -->
+    <script>
+        // 功能1: 点餐
+        function 点餐(菜品名) {
+            let 订单 = JSON.parse(localStorage.getItem('订单')) || [];
+            订单.push(菜品名);
+            localStorage.setItem('订单', JSON.stringify(订单));
+            更新订单列表();
+        }
+
+        // 功能2: 更新显示
+        function 更新订单列表() {
+            let 订单 = JSON.parse(localStorage.getItem('订单')) || [];
+            document.getElementById('已点菜品列表').innerHTML = 订单.join('<br>');
+        }
+        更新订单列表(); // 初始化加载
+    </script>
+</body>
+</html>
